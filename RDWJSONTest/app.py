@@ -7,11 +7,6 @@ import json
 import requests
 import sys
 
-# haal data op
-#response = requests.get("https://opendata.rdw.nl/resource/m9d7-ebf2.json?merk=VOLKSWAGEN&datum_eerste_toelating=20030822")
-#data = response.json()
-#print(data)
-
 exit = False
 
 def search():
