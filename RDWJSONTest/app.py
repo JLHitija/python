@@ -1,5 +1,5 @@
 # TODO meerdere dictionaries tegelijk
-# TODO Meer zoektermen
+# TODO Meer zoektermen (bouwjaar, dag en maand negeren, en hoe ik dat doe, via google of reygan maandag af)
 # TODO zoektermen combineren (e.g. "volkswagen, 1999" of "bromfiets, cilinders: 1")
 # TODO GUI
 
@@ -8,25 +8,25 @@ import requests
 import sys
 
 # haal data op
-response = requests.get("https://opendata.rdw.nl/resource/m9d7-ebf2.json")
-data = response.json()
+#response = requests.get("https://opendata.rdw.nl/resource/m9d7-ebf2.json?merk=VOLKSWAGEN&datum_eerste_toelating=20030822")
+#data = response.json()
+#print(data)
 
 exit = False
 
-### Het lukte nog niet om uit elke dictionary info te halen maar ik wou er zelf achterkomen. Het duurde uberhaupt al lang
-### om search() werkend te krijgen dus als ik het morgen nog niet weet ga ik het wel vragen omdat het anders wel zonde
-### van de tijd is.
-
 def search():
-    print("merk | kenteken | exit")
+    print("Op wat wilt u zoeken?\nmerk | kenteken | exit")
     entry = input(">")
     if entry == "merk":
-        for x in data:
-            print(data[0]['merk'])
+        print("Coming Soon.")
 
     elif entry == "kenteken":
-        for x in data:
-            print(data[0]['kenteken'])
+        kenteken = input("kenteken:")
+        api = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken="
+        data = "".join([api, kenteken])
+        kdata = requests.get(data).json()
+        print(kdata)
+
     elif entry == "exit":
         exit = True
         sys.exit(0)
