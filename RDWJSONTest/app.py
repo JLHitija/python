@@ -12,7 +12,7 @@ exit = False
 pp = pprint.PrettyPrinter(indent=4)
 
 def search():
-    print("Op wat wilt u zoeken?\nmodel | kenteken | exit")
+    print("Op wat wilt u zoeken?\nmodel | kenteken | bouwjaar | exit")
     entry = input(">")
     if entry == "model":
         merk = input("model(TYPE IN CAPS):")
@@ -22,18 +22,27 @@ def search():
         pp.pprint(data2)
 
     elif entry == "kenteken":
-        kenteken = input("kenteken:")
+        kenteken = input("kenteken(TYPE IN CAPS:")
         api = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken="
         data = "".join([api, kenteken])
         data2 = requests.get(data).json()
         pp.pprint(data2)
+
+    elif entry == "bouwjaar":
+        jaar = input("bouwjaar:")
+        api = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?datum_eerste_toelating="
+        #hier een loop
+        datum = jaar + "alle data in het jaar waar het om gaat. Dit moet waarschijnlijk ook" \
+                       "in een loop."
+        data = "".join([api, datum])
+
 
     elif entry == "exit":
         exit = True
         sys.exit(0)
 
     else:
-        print("Error.")
+        print("Error. Try again.")
 
 while exit is False:
     search()
